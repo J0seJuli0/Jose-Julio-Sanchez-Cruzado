@@ -1,0 +1,11 @@
+#contact h2 {
+  font-size: 2.2rem;
+}
+
+.btn {
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}

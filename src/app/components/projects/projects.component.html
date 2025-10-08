@@ -1,0 +1,25 @@
+<section id="projects" class="container py-5">
+  <h2 class="text-center fw-bold mb-5">Proyectos</h2>
+  
+  <div class="row g-4">
+    <div class="col-md-4" *ngFor="let proyecto of proyectos">
+      <div class="card project-card border-0 shadow-lg">
+        <div class="project-img-container">
+          <img [src]="'assets/' + proyecto.imagen" class="card-img-top" [alt]="proyecto.titulo">
+          <div class="overlay d-flex justify-content-center align-items-center">
+            <a [href]="proyecto.link" target="_blank" class="btn btn-light btn-sm me-2">
+              <i class="bi bi-box-arrow-up-right"></i> Ver Proyecto
+            </a>
+            <a [href]="proyecto.github" target="_blank" class="btn btn-dark btn-sm">
+              <i class="bi bi-github"></i> Código
+            </a>
+          </div>
+        </div>
+        <div class="card-body text-center">
+          <h5 class="card-title">{{proyecto.titulo}}</h5>
+          <p class="card-text text-muted">{{proyecto.descripcion}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
