@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-@import url('https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css');
-
 * {
   margin: 0;
   padding: 0;
@@ -372,7 +369,6 @@
 
 /* ======== MODO MÓVIL ======== */
 @media (max-width: 768px) {
-  /* Sidebar por defecto: cerrado (visible con iconos) */
   .sidebar {
     width: 78px;
     background: #11101d;
@@ -385,7 +381,6 @@
     z-index: 100;
   }
 
-  /* Cuando se abre, se superpone */
   .sidebar.open {
     width: 240px;
     background: rgba(17, 16, 29, 0.95);
@@ -393,7 +388,6 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   }
 
-  /* El contenido nunca se mueve */
   .home-section {
     left: 78px;
     width: calc(100% - 78px);
@@ -405,17 +399,14 @@
     width: calc(100% - 78px);
   }
 
-  /* Permitir scroll siempre */
   body {
     overflow-y: auto !important;
   }
 
-  /* Tooltip desactivado en móvil */
   .sidebar li .tooltip {
     display: none;
   }
 
-  /* Botón menú ajustado */
   .sidebar .logo-details #btn {
     font-size: 26px;
     right: 10px;
