@@ -560,3 +560,18 @@
     font-size: 0.85rem;
   }
 }
+
+.skill-category[data-category="os"] .skill-badge.primary {
+  border-color: #64748b;
+  color: #64748b;
+  background: #64748b15;
+}
+
+.skill-category[data-category="os"] .skill-badge.primary:hover {
+  background: linear-gradient(135deg, #64748b, #475569);
+  color: #fff;
+}
+
+.os-icon {
+  background: linear-gradient(135deg, #64748b, #475569);
+}
