@@ -792,3 +792,51 @@
     font-size: 0.75rem;
   }
 }
+
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.btn-primary-custom,
+.btn-secondary-custom,
+.btn-success-custom {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary-custom {
+  background: linear-gradient(135deg, #0d6efd, #0040ff);
+  color: #fff;
+}
+.btn-primary-custom:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #0040ff, #0026b3);
+}
+
+.btn-success-custom {
+  background: linear-gradient(135deg, #198754, #117a43);
+  color: #fff;
+}
+.btn-success-custom:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #117a43, #0b5e33);
+}
+
+.btn-secondary-custom {
+  background: transparent;
+  border: 2px solid #0d6efd;
+  color: #0d6efd;
+}
+.btn-secondary-custom:hover {
+  background: #0d6efd;
+  color: #fff;
+  transform: scale(1.05);
+}
