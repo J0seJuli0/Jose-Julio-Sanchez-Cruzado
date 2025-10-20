@@ -1,33 +1,99 @@
-<section id="contact" class="container py-5 text-center">
-  <h2 class="fw-bold mb-4">Contáctame</h2>
-  <p class="mb-4 text-muted">¿Tienes un proyecto interesante o deseas colaborar? ¡Hablemos!</p>
+<section id="contact" class="container py-5">
+  <h2 class="fw-bold mb-4 text-center">
+    <i class="bi bi-chat-dots-fill text-primary me-2"></i>
+    Contáctame
+  </h2>
+  <p class="mb-4 text-muted text-center">
+    ¿Tienes un proyecto interesante o deseas colaborar? ¡Hablemos!
+  </p>
 
-  <div class="d-flex justify-content-center gap-3 mb-4">
-    <a href="mailto:josejuliosanchezcruzado1@gmail.com" class="btn btn-light shadow-sm px-4 py-2">
-      <i class="bi bi-envelope-fill me-2 text-primary"></i>Email
+  <!-- 🔹 Íconos de contacto -->
+  <div class="d-flex justify-content-center gap-3 mb-4 flex-wrap">
+    <a href="mailto:josejuliosanchezcruzado1@gmail.com"
+      class="contact-icon-btn bg-primary text-white"
+      title="Correo electrónico">
+      <i class="bi bi-envelope-fill"></i>
     </a>
-    <a href="https://linkedin.com/in/josejuliosanchezcruzado" target="_blank" class="btn btn-outline-primary px-4 py-2">
-      <i class="bi bi-linkedin me-2"></i>LinkedIn
+
+    <a href="https://linkedin.com/in/josejuliosanchezcruzado" target="_blank"
+      class="contact-icon-btn bg-info text-white"
+      title="LinkedIn">
+      <i class="bi bi-linkedin"></i>
     </a>
-    <a href="https://github.com/J0seJuli0" target="_blank" class="btn btn-outline-dark px-4 py-2">
-      <i class="bi bi-github me-2"></i>GitHub
+
+    <a href="https://github.com/J0seJuli0" target="_blank"
+      class="contact-icon-btn bg-dark text-white"
+      title="GitHub">
+      <i class="bi bi-github"></i>
+    </a>
+
+    <a href="https://wa.me/51902027977?text=¡Hola%20Julio!%20Vi%20tu%20portafolio%20y%20quiero%20hablar%20sobre%20un%20proyecto."
+      target="_blank"
+      class="contact-icon-btn bg-success text-white"
+      title="WhatsApp">
+      <i class="bi bi-whatsapp"></i>
     </a>
   </div>
 
-  <!-- OPCIONAL: Formulario de contacto -->
-  <div class="card shadow-sm p-4 mx-auto" style="max-width: 600px;">
-    <h5 class="fw-bold mb-3">Envíame un mensaje</h5>
-    <form>
-      <div class="mb-3">
-        <input type="text" class="form-control" placeholder="Tu nombre" required>
+  <!-- 🔹 Formulario de contacto -->
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="contact-form-wrapper">
+        <div class="form-header text-center mb-4">
+          <div class="form-icon">
+            <i class="bi bi-chat-square-text-fill"></i>
+          </div>
+          <h4 class="fw-bold mt-3">Envíame un Mensaje</h4>
+          <p class="text-muted">Respondo en menos de 24 horas</p>
+        </div>
+
+        <form (ngSubmit)="enviarFormulario()" #contactForm="ngForm">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="name" name="nombre" [(ngModel)]="nombre" placeholder="Tu nombre" required />
+                <label for="name"><i class="bi bi-person me-2"></i>Nombre completo</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email" placeholder="Tu email" required />
+                <label for="email"><i class="bi bi-envelope me-2"></i>Email</label>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="subject" name="asunto" [(ngModel)]="asunto" placeholder="Asunto" required />
+                <label for="subject"><i class="bi bi-tag me-2"></i>Asunto</label>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-floating">
+                <textarea class="form-control" id="message" name="mensaje" [(ngModel)]="mensaje" placeholder="Tu mensaje" style="height: 150px" required></textarea>
+                <label for="message"><i class="bi bi-pencil me-2"></i>Cuéntame sobre tu proyecto</label>
+              </div>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary btn-lg w-100" [disabled]="enviando">
+                <ng-container *ngIf="!enviando; else enviandoTpl">
+                  <span>Enviar Mensaje</span>
+                  <i class="bi bi-send-fill ms-2"></i>
+                </ng-container>
+                <ng-template #enviandoTpl>
+                  <span class="spinner-border spinner-border-sm me-2"></span> Enviando...
+                </ng-template>
+              </button>
+            </div>
+          </div>
+        </form>
+
+
+        <div class="text-center mt-4">
+          <p class="text-muted small mb-0">
+            <i class="bi bi-shield-check me-1"></i> Tus datos están seguros y nunca serán compartidos
+          </p>
+        </div>
       </div>
-      <div class="mb-3">
-        <input type="email" class="form-control" placeholder="Tu email" required>
-      </div>
-      <div class="mb-3">
-        <textarea class="form-control" rows="4" placeholder="Escribe tu mensaje" required></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary w-100">Enviar mensaje</button>
-    </form>
+    </div>
   </div>
 </section>
