@@ -1,25 +1,144 @@
 <section id="projects" class="container py-5">
-  <h2 class="text-center fw-bold mb-5">Proyectos</h2>
-  
-  <div class="row g-4">
-    <div class="col-md-4" *ngFor="let proyecto of proyectos">
-      <div class="card project-card border-0 shadow-lg">
-        <div class="project-img-container">
-          <img [src]="'assets/' + proyecto.imagen" class="card-img-top" [alt]="proyecto.titulo">
-          <div class="overlay d-flex justify-content-center align-items-center">
-            <a [href]="proyecto.link" target="_blank" class="btn btn-light btn-sm me-2">
-              <i class="bi bi-box-arrow-up-right"></i> Ver Proyecto
-            </a>
-            <a [href]="proyecto.github" target="_blank" class="btn btn-dark btn-sm">
-              <i class="bi bi-github"></i> Código
-            </a>
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+<h2 class="text-center fw-bold mb-4 section-title d-flex align-items-center justify-content-center gap-2">
+  <i class="bi bi-kanban-fill text-gradient"></i>
+  <span>Mis Proyectos</span>
+</h2>
+
+      <p class="text-center mb-5 section-subtitle">
+        Una colección de mis trabajos más recientes y destacados
+      </p>
+
+      <div class="row g-4">
+        <div class="col-lg-6 col-md-6 col-sm-12" *ngFor="let proyecto of proyectos; let i = index">
+          <div class="project-card shadow-sm" [class.featured]="i === 0">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <span class="project-badge has-icon" [ngClass]="getBadgeClass(proyecto.titulo)">
+                <i class="bi" [ngClass]="getBadgeIcon(proyecto.titulo)"></i>
+                {{ proyecto.badge }}
+              </span>
+
+              <div class="project-actions d-flex gap-2">
+                <a *ngIf="proyecto.github; else privado"
+                  [href]="proyecto.github"
+                  target="_blank"
+                  class="action-btn"
+                  title="Código fuente">
+                  <i class="bi bi-github"></i>
+                </a>
+
+                <ng-template #privado>
+                  <span class="action-btn disabled" title="Código privado">
+                    <i class="bi bi-lock-fill"></i>
+                  </span>
+                </ng-template>
+
+                <a [href]="proyecto.link" target="_blank" class="action-btn" title="Ver proyecto">
+                  <i class="bi bi-box-arrow-up-right"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="project-slider-container" 
+                 (mouseenter)="stopAutoSlide(proyecto)" 
+                 (mouseleave)="startAutoSlide(proyecto)">
+              <div class="slides" [style.transform]="'translateX(-' + proyecto.currentSlide * 100 + '%)'">
+                <div *ngFor="let img of proyecto.imagenes; let j = index" class="slide-wrapper">
+                  <img
+                    [src]="img.startsWith('assets/') ? img : 'assets/' + img"
+                    class="slide-img"
+                    [alt]="proyecto.titulo + ' - Imagen ' + (j + 1)"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+
+              <div class="slide-indicators">
+                <span 
+                  *ngFor="let img of proyecto.imagenes; let j = index"
+                  class="indicator"
+                  [class.active]="j === proyecto.currentSlide"
+                  (click)="goToSlide(proyecto, j)">
+                </span>
+              </div>
+
+              <button class="slider-btn prev" (click)="prevSlide(proyecto)" aria-label="Anterior">
+                <i class="bi bi-chevron-left"></i>
+              </button>
+              <button class="slider-btn next" (click)="nextSlide(proyecto)" aria-label="Siguiente">
+                <i class="bi bi-chevron-right"></i>
+              </button>
+              <button class="preview-btn" (click)="openPreview(proyecto)">
+                <i class="bi bi-images"></i> Ver imágenes
+              </button>
+
+            </div>
+
+            <div class="card-body">
+              <h5 class="project-title">{{ proyecto.titulo }}</h5>
+              <p class="project-description">
+                {{ proyecto.descripcion }}
+              </p>
+
+              <div class="tech-stack mb-3">
+                <span *ngFor="let tech of proyecto.tecnologias" class="tech-tag">{{ tech }}</span>
+              </div>
+
+              <div class="project-footer d-flex justify-content-between align-items-center">
+                <div class="project-stats">
+                  <span class="stat"><i class="bi bi-code-slash"></i> {{ proyecto.lineasCodigo }}+ líneas</span>
+                  <span class="stat"><i class="bi bi-star-fill"></i> {{ proyecto.complejidad }}</span>
+                </div>
+
+                <div class="project-links">
+                  <a *ngIf="proyecto.github; else lockIcon"
+                     [href]="proyecto.github"
+                     target="_blank"
+                     class="btn-link"
+                     title="Código fuente">
+                    <i class="bi bi-github"></i>
+                  </a>
+                  <ng-template #lockIcon>
+                    <i class="bi bi-lock-fill text-muted" title="Código privado"></i>
+                  </ng-template>
+                  <a [href]="proyecto.link" target="_blank" class="btn-link primary" title="Ver proyecto">
+                    <i class="bi bi-eye"></i> Ver
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="card-body text-center">
-          <h5 class="card-title">{{proyecto.titulo}}</h5>
-          <p class="card-text text-muted">{{proyecto.descripcion}}</p>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<div class="image-preview" *ngIf="previewVisible">
+  <div class="preview-backdrop" (click)="closePreview()"></div>
+
+  <div class="preview-content">
+    <button class="close-btn" (click)="closePreview()">
+      <i class="bi bi-x-lg"></i>
+    </button>
+
+  <img
+    [src]="selectedImage.startsWith('assets/') ? selectedImage : 'assets/' + selectedImage"
+    class="preview-img"
+    [alt]="selectedProject?.titulo"
+  />
+
+
+    <div class="preview-controls">
+      <button (click)="prevPreviewImage()" class="control-btn">
+        <i class="bi bi-chevron-left"></i>
+      </button>
+      <button (click)="nextPreviewImage()" class="control-btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+
+    <p class="preview-caption">{{ selectedProject?.titulo }}</p>
+  </div>
+</div>
