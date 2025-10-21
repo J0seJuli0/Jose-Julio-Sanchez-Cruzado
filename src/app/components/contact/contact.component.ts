@@ -50,7 +50,7 @@ export class ContactComponent {
         Swal.fire({
           icon: 'success',
           title: '¡Mensaje enviado!',
-          text: result.message || 'Tu mensaje fue enviado con éxito.',
+          text: result.message || '¡Tu mensaje fue enviado con éxito! :)',
           confirmButtonColor: '#667eea'
         });
 
