@@ -31,7 +31,7 @@ export class ContactComponent {
     this.enviando = true;
 
     try {
-      const response = await fetch('https://mail-portafolio.vercel.app/api/send_email', {
+      const response = await fetch('https://mail-portafolio.onrender.com/send_email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
