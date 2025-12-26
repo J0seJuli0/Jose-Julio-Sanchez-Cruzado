@@ -27,6 +27,16 @@
 
   <section style="min-height: 100vh;">
     @defer (on viewport) {
+      <app-certificaciones></app-certificaciones>
+    } @placeholder {
+      <div class="text-center my-5">
+        <div class="spinner-border text-success" role="status"></div>
+      </div>
+    }
+  </section>
+
+  <section style="min-height: 100vh;">
+    @defer (on viewport) {
       <app-contact></app-contact>
     } @placeholder {
       <div class="text-center my-5">

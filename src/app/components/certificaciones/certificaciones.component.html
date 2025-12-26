@@ -1,0 +1,65 @@
+<section id="certificaciones" class="certifications-section">
+  <div class="container">
+
+    <header class="section-header">
+      <h2 class="section-title">
+        Certificaciones <span>Profesionales</span>
+      </h2>
+      <p class="section-subtitle">
+       Certificaciones & <span>Formación</span>
+      </p>
+
+      <p class="cert-count">
+        {{ totalCertifications }} certificaciones obtenidas
+    </p>
+    </header>
+
+    <ng-container *ngFor="let group of certificationGroups">
+
+      <h3 class="group-title">{{ group.title }}</h3>
+
+      <div class="row certifications-grid">
+        <div
+          class="col-12 col-sm-6 col-lg-4"
+          *ngFor="let cert of group.certifications">
+
+          <article class="cert-card">
+
+            <div class="badge-wrapper">
+              <img
+                [src]="cert.badge"
+                [alt]="cert.title" />
+            </div>
+
+            <div class="cert-content">
+              <h5>{{ cert.title }}</h5>
+              <p class="issuer">{{ cert.issuer }}</p>
+              <span class="year">{{ cert.year }}</span>
+            </div>
+
+            <div class="cert-actions">
+              <a
+                *ngIf="cert.file"
+                [href]="cert.file"
+                target="_blank"
+                class="btn-ghost">
+                Ver certificado
+              </a>
+
+              <a
+                *ngIf="cert.verifyUrl"
+                [href]="cert.verifyUrl"
+                target="_blank"
+                class="btn-solid">
+                Ver Credencial
+              </a>
+            </div>
+
+          </article>
+        </div>
+      </div>
+
+    </ng-container>
+
+  </div>
+</section>
