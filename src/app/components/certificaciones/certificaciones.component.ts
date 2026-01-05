@@ -125,6 +125,14 @@ export class CertificacionesComponent {
           badge: 'assets/badges/officelogo.png',
           file: 'assets/certificados/Certificado_Office_Bsico.pdf',
           verifyUrl: ''
+        },
+        {
+          title: 'Scrum Master',
+          issuer: 'Campus Romero',
+          year: '2023',
+          badge: 'assets/badges/Scrum-Master-Badgle.png',
+          file: 'assets/certificados/Scrum-Master.pdf',
+          verifyUrl: 'https://agile-s-school-b953.thinkific.com/certificates/ybfxy63fxs'
         }
       ]
     }
