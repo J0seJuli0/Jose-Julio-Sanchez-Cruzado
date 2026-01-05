@@ -128,7 +128,7 @@ export class CertificacionesComponent {
         },
         {
           title: 'Scrum Master',
-          issuer: 'Campus Romero',
+          issuer: 'KZI - Kaizenia',
           year: '2023',
           badge: 'assets/badges/Scrum-Master-Badgle.png',
           file: 'assets/certificados/Scrum-Master.pdf',
